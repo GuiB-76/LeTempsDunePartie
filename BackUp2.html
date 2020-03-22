@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Casse Brique </title>
+        <!-- CSS du canvas -->
+        <style>
+            * { padding: 0; margin: 0; }
+            canvas { background: lightgray; display: block; margin: 10% auto; }
+        </style>
+    </head>
+
+    <body>
+        <!-- balise et initialisation du canvas-->
+        <canvas id="myCanvas" width="480" height="320"></canvas>
+
+        <script>
+         // // VARIABLES GéNéRALES // //
+
+            // variable de détection du canvas
+            var canvas = document.getElementById("myCanvas");
+            // variable de création de modèles 2d avec l'attribut ctx
+            var ctx = canvas.getContext("2d");
+
+            // VARIABLES DE LA BALLE //
+            // variable qui définie le rayon de la balle
+            var ballRadius = 10;
+            // variable qui définissent son emplacement d'apparition (spawn)
+            var x = canvas.width/2;
+            var y = canvas.height-30;
+            // variable delta x et y pour les déplacements de la balle
+            var dx = 2;
+            var dy = -2;
+
+            // VARIABLES DU PADDLE ( raquette ) //
+            // Définition de sa hauteur, largeur et départ sur l'axe X
+            var paddleHeight = 10;
+            var paddleWidth = 75;
+            var paddleX = (canvas.width-paddleWidth) / 2;
+
+            // VARIABLES DES CONTROLES //
+            var rightPressed = false;
+            var leftPressed = false;
+
+
+         // // document. // //
+
+            // Action de l'appui sur la touche 
+            document.addEventListener("keydown", keyDownHandler, false);
+            document.addEventListener("keyup", keyUpHandler, false);
+            
+
+         // // FONCTIONS // //
+
+            // fonction d'activation des touches 
+            function keyDownHandler(e) {
+                if(e.key == "Right" || e.key == "ArrowRight") {
+                    rightPressed = true;
+                }
+                else if(e.key == "Left" || e.key == "ArrowLeft") {
+                    leftPressed = true;
+                }
+            }
+            function keyUpHandler(e) {
+                if(e.key == "Right" || e.key == "ArrowRight") {
+                    rightPressed = false;
+                }
+                else if(e.key == "Left" || e.key == "ArrowLeft") {
+                    leftPressed = false;
+                }
+            }
+
+            // fonction de définition de la balle : début de déplacement / dimensions et rayon par rapports aux variables / remplir et quelle couleur / fin de déplacement
+            function drawBall() {
+                ctx.beginPath();
+                ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            // fonction de définition du paddle : début de déplacement / dimensions et angle par rapports aux variables / remplir et quelle couleur / fin de déplacement
+            function drawPaddle() {
+                ctx.beginPath();
+                ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            // fonction de dessin des élements : clear les images précédentes par rapoprt à leurs déplacements
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // dessin de la balle
+                drawBall();
+                // dessin du paddle (raquette)
+                drawPaddle();
+
+                // DIRECTION BALLE //
+                // Si la balle touche le haut ou le bas elle repart dans l'autre sens
+                if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                    dx = -dx;
+                }
+                // Si la balle touche la droite ou la gauche elle repart dans l'autre sens
+                if(y + dy < ballRadius) {
+                    dy = -dy;
+                } 
+                else if(y + dy > canvas.height-ballRadius) {
+                    if(x > paddleX && x < paddleX + paddleWidth) {
+                        dy = -dy;
+                    }
+                    else {
+                        alert("GAME OVER");
+                        document.location.reload();
+                        clearInterval(interval);
+                    }
+                }
+
+                // TOUCHES //
+                // Si la touche préssée est droite ou gauche le paddle va à droite ou gauche et ne dépasse pas le cadre du canvas
+                if(rightPressed && paddleX < canvas.width-paddleWidth) {
+                    paddleX += 7;
+                }
+                else if(leftPressed && paddleX > 0) {
+                    paddleX -= 7;
+                }
+                
+                // update de x et y par rapport à leur déplacement 
+                x += dx;
+                y += dy;
+            }
+
+            // taux de rafraichissement //
+            var interval = setInterval(draw, 10);
+
+            
+        </script>
+
+        <!-- JScript à réutiliser-->
+        <!--
+
+        ctx.beginPath();
+        ctx.rect(20, 40, 50, 50);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(240, 160, 20, 0, Math.PI*2, false);
+        ctx.fillStyle = "green";
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.rect(160, 10, 100, 40);
+        ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
+        ctx.stroke();
+        ctx.closePath();
+
+        -->
+        
+    </body>
+
+</html>
