@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title> Le temps d'une partie </title>
+        <!-- Lien vers CSS-->
+        <link rel="stylesheet" type="text/css" href="style.css"/>
+        <!-- CSS du canvas -->
+        <style>
+            * { padding: 0; margin: 0; }
+            canvas { background: lightgray; display: block; margin: 10% auto; }
+        </style>
+    </head>
+
+    <body>
+
+        <header>
+            <section id="topbar">
+                <img src="">
+                <nav>
+                    <ul>
+                        <li>
+                            Accueil
+                        </li>
+                        <li>
+                            Casse-Briques
+                        </li>
+                        <li>
+                            A propos
+                        </li>
+                    </ul>
+                </nav>
+                
+            </section>
+        </header>
+
+
+        <!-- balise et initialisation du canvas-->
+        <canvas id="myCanvas" width="480" height="320"></canvas>
+
+        <!-- JavaScript -->
+        <script>
+         // // VARIABLES GéNéRALES // //
+
+            // variable de détection du canvas
+            var canvas = document.getElementById("myCanvas");
+            // variable de création de modèles 2d avec l'attribut ctx
+            var ctx = canvas.getContext("2d");
+
+            // VARIABLES DE LA BALLE //
+            // variable qui définie le rayon de la balle
+            var ballRadius = 10;
+            // variable qui définissent son emplacement d'apparition (spawn)
+            var x = canvas.width/2;
+            var y = canvas.height-30;
+            // variable delta x et y pour les déplacements de la balle
+            var dx = 2;
+            var dy = -2;
+
+            // VARIABLES DU PADDLE ( raquette ) //
+            // Définition de sa hauteur, largeur et départ sur l'axe X
+            var paddleHeight = 10;
+            var paddleWidth = 75;
+            var paddleX = (canvas.width-paddleWidth) / 2;
+
+            // VARIABLES DES CONTROLES //
+            var rightPressed = false;
+            var leftPressed = false;
+
+            // VARIABLES DE CRéATION DES BRIQUES //
+            var brickRowCount = 3;
+            var brickColumnCount = 5;
+            var brickWidth = 75;
+            var brickHeight = 20;
+            var brickPadding = 10;
+            var brickOffsetTop = 30;
+            var brickOffsetLeft = 30;
+            // Mise en palce des briques : c pour columns / r pour rows / position de x et y à l'intérieur de la zone des briques
+            var bricks = [];
+            for(var c=0; c<brickColumnCount; c++) {
+                bricks[c] = [];
+                for(var r=0; r<brickRowCount; r++) {
+                    bricks[c][r] = { x: 0, y: 0, status: 1 };
+                }
+            }
+            
+            // variable du score
+            var score = 0;
+
+            // variable des vies
+            var lives = 2;
+
+
+         // // document. // //
+
+            // Action de l'appui sur la touche 
+            document.addEventListener("keydown", keyDownHandler, false);
+            document.addEventListener("keyup", keyUpHandler, false);
+            // Mouvement de la souris
+            document.addEventListener("mousemove", mouseMoveHandler, false);
+    
+
+         // // FONCTIONS // //
+
+            // fonction de mouvement avec la souris
+            function mouseMoveHandler(e) {
+                var relativeX = e.clientX - canvas.offsetLeft;
+                if(relativeX > 0 && relativeX < canvas.width) {
+                    paddleX = relativeX - paddleWidth/2;
+                }
+            }   
+
+            // fonction d'activation des touches 
+            function keyDownHandler(e) {
+                if(e.key == "Right" || e.key == "ArrowRight") {
+                    rightPressed = true;
+                }
+                else if(e.key == "Left" || e.key == "ArrowLeft") {
+                    leftPressed = true;
+                }
+            }
+            function keyUpHandler(e) {
+                if(e.key == "Right" || e.key == "ArrowRight") {
+                    rightPressed = false;
+                }
+                else if(e.key == "Left" || e.key == "ArrowLeft") {
+                    leftPressed = false;
+                }
+            }
+
+            // fonction de collision avec les briques 
+            function collisionDetection() {
+                for (var c = 0; c < brickColumnCount; c++) {
+                    for (var r = 0; r < brickRowCount; r++) {
+                        var b = bricks[c][r];
+                        if (b.status == 1) {
+                            if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                                dy = -dy;
+                                b.status = 0;
+                                // ligne pour compter le score
+                                score++;
+                                // si on casse tout on gagne
+                                if(score == brickRowCount*brickColumnCount) {
+                                    alert("YOU W0N, CONGRATULATIONS!");
+                                    document.location.reload();
+                                    clearInterval(interval); // Needed for Chrome to end game
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // foncion du score
+            function drawScore() {
+                ctx.font = "16px Roboto";
+                ctx.fillStyle = "red";
+                ctx.fillText("Score: "+score, 8, 20);
+            }
+
+            // fonction des vies
+            function drawLives() {
+                ctx.font = "16px Roboto";
+                ctx.fillStyle = "green";
+                ctx.fillText("Lives: "+lives, canvas.width-65, 20);
+            }
+
+            // fonction de définition de la balle : début de déplacement / dimensions et rayon par rapports aux variables / remplir et quelle couleur / fin de déplacement
+            function drawBall() {
+                ctx.beginPath();
+                ctx.arc(x, y, ballRadius, 0, Math.PI*2);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            // fonction de définition du paddle : début de déplacement / dimensions et angle par rapports aux variables / remplir et quelle couleur / fin de déplacement
+            function drawPaddle() {
+                ctx.beginPath();
+                ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            }
+
+            // fonction de définition des briques : variables de la zone de placement / début placement / taille et couleur / fin de placement
+            function drawBricks() {
+                for(var c=0; c<brickColumnCount; c++) {
+                    for(var r=0; r<brickRowCount; r++) {
+                        if(bricks[c][r].status == 1) {
+                            // calcul des positions des briques dans leur zone d'apparition
+                            var brickX = (c*(brickWidth+brickPadding))+brickOffsetLeft;
+                            var brickY = (r*(brickHeight+brickPadding))+brickOffsetTop;
+                            // colones et lignes
+                            bricks[c][r].x = brickX;
+                            bricks[c][r].y = brickY;
+                            //taille couleur etc...
+                            ctx.beginPath();
+                            ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                            ctx.fillStyle = "#0095DD";
+                            ctx.fill();
+                            ctx.closePath();
+                        }
+                    }
+                }
+            }
+
+            // fonction de dessin des élements : clear les images précédentes par rapoprt à leurs déplacements
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                // dessin des briques 
+                drawBricks();
+                // dessin de la balle
+                drawBall();
+                // dessin du paddle (raquette)
+                drawPaddle();
+                //activtation du score
+                drawScore();
+                // activation du compteur de vies
+                drawLives();
+                // activtation de la collision 
+                collisionDetection();
+                // DIRECTION BALLE //
+                // Si la balle touche le haut ou le bas elle repart dans l'autre sens
+                if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
+                    dx = -dx;
+                }
+                // Si la balle touche la droite ou la gauche elle repart dans l'autre sens
+                if(y + dy < ballRadius) {
+                    dy = -dy;
+                } 
+                else if(y + dy > canvas.height-ballRadius) {
+                    if(x > paddleX && x < paddleX + paddleWidth) {
+                        dy = -dy;
+                    }
+                    else {
+                        lives--;
+                        if(!lives) {
+                            alert("GAME OVER");
+                            document.location.reload();
+                            clearInterval(interval); // Needed for Chrome to end game
+                        }
+                        else {
+                            x = canvas.width/2;
+                            y = canvas.height-30;
+                            dx = 2;
+                            dy = -2;
+                            paddleX = (canvas.width-paddleWidth)/2;
+                        }
+                    }
+                }
+                // TOUCHES //
+                // Si la touche préssée est droite ou gauche le paddle va à droite ou gauche et ne dépasse pas le cadre du canvas
+                if(rightPressed && paddleX < canvas.width-paddleWidth) {
+                    paddleX += 7;
+                }
+                else if(leftPressed && paddleX > 0) {
+                    paddleX -= 7;
+                }
+                
+                // update de x et y par rapport à leur déplacement 
+                x += dx;
+                y += dy;
+            }
+
+            // taux de rafraichissement et vitesse d'animation //
+            var interval = setInterval(draw, 10);
+
+            
+        </script>
+        
+    </body>
+
+</html>
