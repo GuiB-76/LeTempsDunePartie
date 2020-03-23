@@ -1,92 +1,202 @@
 /**/ /**/ /* HEADER */ /**/ /**/
-@media screen and (min-width:350px){
-    /* Grille du header */
-    #topbar {
-        display: grid;
-            grid-template-columns: 19% auto 80%;
-            background-color: #2887ca;
+
+@media screen and (min-width:370px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 14px;
+    }
+    header section#topbar nav {
+        padding-left: 1%;
+    }
+}
+
+@media screen and (min-width:400px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 15px;
+    }
+    header section#topbar nav {
+        padding-left: 3%;
+    }
+}  
+
+@media screen and (min-width:450px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 16px;
+    }
+    header section#topbar nav {
+        padding-left: 8%;
+    }
+    /* logo du header */
+    header section#topbar img#logo-header {
+        padding-top: 7%;
+        padding-left: 6.7%;
+    }
+}
+
+@media screen and (min-width:500px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 17px;
+    }
+    header section#topbar nav {
+        padding-left: 12%;
     }
     /* logo du header */
     header section#topbar img#logo-header {
         width: 100%;
-        padding-top: 12.5%;
-        padding-left: 6.7%;
-    }
-    header section#topbar nav {
-        text-align: center;
-        padding-left: 2%;
-    }
-    /* modification des boutons */
-    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
-        display: inline-block;
-        list-style-type: none;
-        padding: 4%;
-        background-color: #0d72b9;
-        transition: 0.3s;
-        font-size: 14px;
-    }
-    /* modif. couleur bouton au survol */
-    header section#topbar nav.menu-nav-header ul li.btn-nav-header:hover {
-        background-color: #f6bb20;
-    }
-    /* modif. décoration et couleur liens du header */
-    header section#topbar nav.menu-nav-header ul li.btn-nav-header a{
-        text-decoration: none;
-        color: white;
-    }   
-    /* modif. placement du ul dans la case de la grille du header */
-    header section#topbar nav.menu-nav-header ul {
-        display: block;
-        list-style-type: disc;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        padding-inline-start: 5px;
+        padding-top: 5%;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-bottom: 5%;
     }
 }
 
-@media screen and (min-width:1600px){
-    /* Grille du header */
-    #topbar {
-        display: grid;
-            grid-template-columns: 15% auto 35%;
-            background-color: #2887ca;
+@media screen and (min-width:550px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 18px;
     }
+    header section#topbar nav {
+        padding-left: 16%;
+    }
+}
+
+@media screen and (min-width: 600px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 19px;
+    }
+    header section#topbar nav {
+        padding-left: 18.5%;
+    }
+}
+
+@media screen and (min-width: 650px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 20px;
+    }
+    header section#topbar nav {
+        padding-left: 20%;
+        padding-top: 1%;
+    }
+}
+
+@media screen and (min-width: 700px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 20px;
+    }
+    header section#topbar nav {
+        padding-left: 27%;
+        padding-top: 2%;
+    }
+}
+
+@media screen and (min-width: 750px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 20px;
+    }
+    header section#topbar nav {
+        padding-left: 30%;
+    }
+    /* logo du header */
+    header section#topbar img#logo-header {
+        width: 100%;
+        padding-top: 1%;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-bottom: 1%;
+    }
+}
+
+@media screen and (min-width: 850px){
+    /* modification des boutons */
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 20px;
+    }
+     /* Emplacement des boutons */
+    header section#topbar nav {
+        padding-left: 38%;
+        padding-top: 2%;
+    }
+}
+
+@media screen and (min-width: 950px){
+     /* Emplacement des boutons */
+    header section#topbar nav {
+        padding-left: 45%;
+        padding-top: 2.5%;
+    }
+}
+
+@media screen and (min-width: 1050px){
+     /* Emplacement des boutons */
+    header section#topbar nav {
+        padding-left: 50%;
+        padding-top: 3.5%;
+    }
+}
+
+@media screen and (min-width: 1150px){
     /* logo du header */
     header section#topbar img#logo-header {
         width: 75%;
     }
+     /* Emplacement des boutons */
     header section#topbar nav {
-        text-align: center;
-        padding-left: 30%;
-        padding-top: 3.5%;
-    }
-    /* modification des boutons */
-    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
-        display: inline-block;
-        list-style-type: none;
-        padding: 5%;
-        background-color: #0d72b9;
-        transition: 0.3s;
-        font-size: 20px;
-    }
-    /* modif. couleur bouton au survol */
-    header section#topbar nav.menu-nav-header ul li.btn-nav-header:hover {
-        background-color: #f6bb20;
-    }
-    /* modif. décoration et couleur liens du header */
-    header section#topbar nav.menu-nav-header ul li.btn-nav-header a{
-        text-decoration: none;
-        color: white;
-    }   
-    /* modif. placement du ul dans la case de la grille du header */
-    header section#topbar nav.menu-nav-header ul {
-        display: block;
-        list-style-type: disc;
-        margin-block-start: 1em;
-        margin-block-end: 1em;
-        padding-inline-start: 5px;
+        padding-left: 55%;
+        padding-top: 2.5%;
     }
 }
+
+@media screen and (min-width: 1300px){
+    /* logo du header */
+    header section#topbar img#logo-header {
+        width: 75%;
+    }
+     /* Emplacement des boutons */
+    header section#topbar nav {
+        padding-left: 60%;
+        padding-top: 2.5%;
+    }
+}
+
+@media screen and (min-width: 1400px){
+    /* logo du header */
+    header section#topbar img#logo-header {
+        width: 75%;
+    }
+     /* Emplacement des boutons */
+    header section#topbar nav {
+        padding-left: 60%;
+        padding-top: 2.5%;
+    }
+}
+
+@media screen and (min-width:1600px){
+    /* logo du header */
+    header section#topbar img#logo-header {
+        width: 80%;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-top: 1.5%;
+        padding-bottom: 1%;
+    }
+    /* Emplacement des boutons */
+    header section#topbar nav {
+        padding-left: 65%;
+        padding-top: 3.5%;
+        margin-bottom: 3.5%;
+    }
+    header section#topbar nav.menu-nav-header ul li.btn-nav-header {
+        font-size: 22px;
+    }
+}
+
 @media screen and (min-width:1810px){
     /* Grille du header */
     #topbar {
@@ -97,6 +207,10 @@
     /* logo du header */
     header section#topbar img#logo-header {
         width: 75%;
+        padding-left: 1%;
+        padding-right: 1%;
+        padding-top: 1%;
+        padding-bottom: 1%;
     }
     header section#topbar nav {
         text-align: center;
