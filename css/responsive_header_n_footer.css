@@ -1,6 +1,6 @@
 /**/ /**/ /* HEADER */ /**/ /**/
 
-@media screen and (min-width:370px){
+@media screen and (min-width: 370px){
     /* modification des boutons */
     header section#topbar nav.menu-nav-header ul li.btn-nav-header {
         font-size: 14px;
@@ -10,7 +10,7 @@
     }
 }
 
-@media screen and (min-width:400px){
+@media screen and (min-width: 400px){
     /* modification des boutons */
     header section#topbar nav.menu-nav-header ul li.btn-nav-header {
         font-size: 15px;
@@ -20,7 +20,7 @@
     }
 }  
 
-@media screen and (min-width:450px){
+@media screen and (min-width: 450px){
     /* modification des boutons */
     header section#topbar nav.menu-nav-header ul li.btn-nav-header {
         font-size: 16px;
@@ -35,7 +35,7 @@
     }
 }
 
-@media screen and (min-width:500px){
+@media screen and (min-width: 500px){
     /* modification des boutons */
     header section#topbar nav.menu-nav-header ul li.btn-nav-header {
         font-size: 17px;
@@ -53,7 +53,7 @@
     }
 }
 
-@media screen and (min-width:550px){
+@media screen and (min-width: 550px){
     /* modification des boutons */
     header section#topbar nav.menu-nav-header ul li.btn-nav-header {
         font-size: 18px;
@@ -177,7 +177,7 @@
     }
 }
 
-@media screen and (min-width:1600px){
+@media screen and (min-width: 1600px){
     /* logo du header */
     header section#topbar img#logo-header {
         width: 80%;
@@ -197,7 +197,7 @@
     }
 }
 
-@media screen and (min-width:1810px){
+@media screen and (min-width: 1810px){
     /* Grille du header */
     #topbar {
         display: grid;
@@ -250,4 +250,5 @@
 /* ---------------------------------------------------------------------- */
 
 /**/ /**/ /* FOOTER */ /**/ /**/
+
 
