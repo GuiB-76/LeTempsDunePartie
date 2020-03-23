@@ -92,3 +92,9 @@ header section#topbar nav.menu-nav-header ul {
 /* ---------------------------------------------------------------------- */
 
 /**/ /**/ /* FOOTER */ /**/ /**/
+
+/* socket */
+#socket {
+    text-align: center;
+    background-color: #50aef1;
+}
