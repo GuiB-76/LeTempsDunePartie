@@ -37,7 +37,6 @@
                         </li>
                     </ul>
                 </nav>
-                
             </section>
         </header>
 
@@ -66,7 +65,7 @@
 
             // VARIABLES DU PADDLE ( raquette ) //
             // Définition de sa hauteur, largeur et départ sur l'axe X
-            var paddleHeight = 10;
+            var paddleHeight = 20;
             var paddleWidth = 75;
             var paddleX = (canvas.width-paddleWidth) / 2;
 
@@ -176,7 +175,7 @@
             function drawBall() {
                 ctx.beginPath();
                 ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-                ctx.fillStyle = "#0095DD";
+                ctx.fillStyle = "#2887ca";
                 ctx.fill();
                 ctx.closePath();
             }
@@ -185,7 +184,7 @@
             function drawPaddle() {
                 ctx.beginPath();
                 ctx.rect(paddleX, canvas.height-paddleHeight, paddleWidth, paddleHeight);
-                ctx.fillStyle = "#0095DD";
+                ctx.fillStyle = "#2887ca";
                 ctx.fill();
                 ctx.closePath();
             }
@@ -204,7 +203,7 @@
                             //taille couleur etc...
                             ctx.beginPath();
                             ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                            ctx.fillStyle = "#0095DD";
+                            ctx.fillStyle = "#2887ca";
                             ctx.fill();
                             ctx.closePath();
                         }
@@ -228,18 +227,20 @@
                 // activtation de la collision 
                 collisionDetection();
                 // DIRECTION BALLE //
-                // Si la balle touche le haut ou le bas elle repart dans l'autre sens
+                // Si la balle touche le haut elle repart dans l'autre sens
                 if(x + dx > canvas.width-ballRadius || x + dx < ballRadius) {
                     dx = -dx;
                 }
                 // Si la balle touche la droite ou la gauche elle repart dans l'autre sens
                 if(y + dy < ballRadius) {
                     dy = -dy;
-                } 
+                }
+                // Si elle touche le paddle elle rebombit
                 else if(y + dy > canvas.height-ballRadius) {
                     if(x > paddleX && x < paddleX + paddleWidth) {
                         dy = -dy;
                     }
+                    
                     else {
                         lives--;
                         if(!lives) {
