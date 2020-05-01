@@ -51,79 +51,39 @@ hr {
 /* ---------------------------------------------------------------------- */
 /* ---------------------------------------------------------------------- */
 
-/**/ /**/ /* HEADER */ /**/ /**/
-
-/* Grille du header */
-#topbar {
-    display: grid;
-        grid-template-columns: 19% auto 80%;
-        background-color: #2887ca;
-}
-/* logo du header */
-header section#topbar img#logo-header {
-    width: 100%;
-    padding-top: 12.5%;
-    padding-left: 6.7%;
-}
-header section#topbar nav {
-    text-align: center;
-    padding-left: 2%;
-}
-/* modification des boutons */
-header section#topbar nav.menu-nav-header ul li.btn-nav-header {
-    display: inline-block;
-    list-style-type: none;
-    padding: 4%;
-    background-color: #0d72b9;
-    transition: 0.3s;
-    font-size: 12px;
-}
-/* modif. couleur bouton au survol */
-header section#topbar nav.menu-nav-header ul li.btn-nav-header:hover {
-    background-color: #f6bb20;
-}
-/* modif. décoration et couleur liens du header */
-header section#topbar nav.menu-nav-header ul li.btn-nav-header a{
-    text-decoration: none;
-    color: white;
-}   
-/* modif. placement du ul dans la case de la grille du header */
-header section#topbar nav.menu-nav-header ul {
-    display: block;
-    list-style-type: disc;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    padding-inline-start: 5px;
-}
-
-/* ---------------------------------------------------------------------- */
-
-/**/ /**/ /* FOOTER */ /**/ /**/
-
-/* socket */
-#socket {
-    text-align: center;
-    background-color: #50aef1;
-}
-
-/* ---------------------------------------------------------------------- */
-/* ---------------------------------------------------------------------- */
-
 /**/ /**/ /* MAIN */ /**/ /**/
 
 /* texte d'accueil */
 main section div p {
     text-align: center;
-    padding-left: 25%;
-    padding-right: 25%;
+    padding-left: 20%;
+    padding-right: 20%;
 }
 
 /* Nos Jeux */
-main section.nos-jeux div h2, main section.nos-jeux div p {
+main section#nos-jeux h2{
     text-align: center;
     padding-left: 25%;
     padding-right: 25%;
 }
-main section.nos-jeux {
+main section#nos-jeux p{
+    text-align: justify;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+main section#nos-jeux {
     background-color: #ededed;
+}
+
+/* Carnet de Développement */
+main section#carnet-de-dev h2, main section#carnet-de-dev h3{
+    text-align: center;
+    padding-left: 25%;
+    padding-right: 25%;
+}
+main section#carnet-de-dev ul{
+    text-align: center;
+    padding-left: 25%;
+    padding-right: 25%;
+    font-size: 35px;
 }

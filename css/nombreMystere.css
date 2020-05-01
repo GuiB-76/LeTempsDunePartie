@@ -1,0 +1,96 @@
+body {
+    background-image: url("https://opengameart.org/sites/default/files/parallax-industrial-anim_x2_0.gif");
+    background-size: cover;
+    background-position: top;
+
+    font-family: 'Roboto', sans-serif;
+}   
+
+main {
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+section#Jeu{
+    width: 50%;
+    height: 400px;
+    background-color: rgba(73, 160, 116, 0.74);
+    border-radius: 40px;
+    box-shadow: 0 0 10px 10px rgba(255, 255, 255, .3);
+    padding: 30px;
+    text-align: center;
+}
+
+.display-none {
+    display: none;
+}
+
+/* titre et phrases */
+main section#Jeu h1{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
+    font-size: 45px;
+    color: gold;
+    font-variant: small-caps;
+}
+main section#Jeu p{
+    font-size: 24px;
+    color: rgb(31, 66, 82);
+}
+main section#Jeu p.phraseInfo{
+    color: rgb(31, 66, 82);
+}
+
+/* Zone d'info plus ou moins */
+main section#Jeu h2{
+    font-size: 35px;
+    color: rgb(185, 14, 14);
+    font-weight: bold;
+    background-color:rgba(60, 129, 95, 0.733) ;
+}
+
+/* Zone de texte et boutton d'envoi */
+main section#Jeu form label{
+    font-size: 26px;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    padding-bottom: 10px;
+}
+main section#Jeu form input{
+    font-size: 24px;
+}
+main section#Jeu form input {
+    font-size: 24px;
+}
+main section#Jeu form button{
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* footer */
+#fleches{
+    padding-top: 10%;
+}
+#fleche-gauche {
+    width: 6%;
+    padding-left: 10%;
+    transition: 0.3s;
+}
+#fleche-gauche:hover {
+    transform: scale(1.2);
+}
+#fleche-droite {
+    width: 6%;
+    float: right;
+    padding-right: 10%;
+    transition: 0.3s;
+}
+#fleche-droite:hover {
+    transform: scale(1.2);
+}
+
+#lecteur-audio{
+    text-align: center;
+}

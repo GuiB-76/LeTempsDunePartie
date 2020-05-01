@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="Le Jeu du Nombre Mystère" content="Jeu du Nombre Mystère : trouvez le nombre mystère en vous basant sur les indications données en jeu. ">
+        <title> Le Nombre Mystère </title>
+        <!-- Police et fichier CSS -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css\nombreMystere.css">
+    </head>
+    <body>
+
+        <main>
+           
+            <section id="Jeu">
+                <h1> Le Nombre Mystère </h1>
+                <p> Quel est le nombre mystère ? </p>
+                <h2 id="indice-plus" class="display-none"> C'est plus ! </h2>
+                <h2 id="indice-moins" class="display-none"> C'est moins ! </h2>
+                <form id="play-form" action="" name="answerArea">
+                    <label for="price"> Tapez votre réponse : </label>
+                    <input name="answerArea" id="price" type="number" placeholder="           Écrivez ici "/>
+                    <button type="submit"> Répondre </button>
+                </form>
+                <p class="phraseInfo"> <u> L'objectif est de deviner le nombre mystère entre 0 et 100.</u> </p>
+            </section>
+
+        </main>
+
+        <footer>
+            <div id="fleches">
+                <a href="index.html">  <img id="fleche-gauche" src="img\fleche_interface_gauche.png"> </a>
+                <img id="fleche-droite" src="img\fleche_interface.png">
+            </div>
+
+             <br> <hr> <br>
+
+             <!-- Ne jamais refaire ça x) -->
+             <!-- <audio src="sounds\Cruel Angel-s Thesis (Eurobeat Mix) [Mpgun.com].mp3" type="audio/mp3" autoplay>
+                    Your browser does not support the audio element.
+                  </audio> 
+              -->
+             
+            <div id="lecteur-audio">
+                <audio controls>
+                    <source src="sounds\Cruel Angel-s Thesis (Eurobeat Mix) [Mpgun.com].mp3" type="audio/mp3" autoplay>
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </footer>
+
+            <script src="nombreMystere.js"></script>
+
+    </body>
+</html>
